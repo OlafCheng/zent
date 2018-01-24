@@ -11,24 +11,30 @@
 }
 
 .zent-notify {
-  padding: 0 25px;
-  margin-bottom: 10px;
-  line-height: 40px;
-  max-height: 200px;
-  overflow-y: auto;
-  font-size: 14px;
-  color: $theme-stroke-10;
-  text-align: center;
-  border-radius: 2px;
-  box-sizing: border-box;
-  min-height: 40px;
+  padding-bottom: 10px;
 
-  &.zent-notify-success {
-    background: $notify-success;
-  }
+  &-content {
+    padding: 0 25px;
+    line-height: 40px;
+    max-height: 200px;
+    overflow-y: auto;
+    font-size: 14px;
+    color: $theme-stroke-10;
+    text-align: center;
+    border-radius: 2px;
+    box-sizing: border-box;
 
-  &.zent-notify-error {
-    background: $notify-error;
+    &:empty:before {
+      content: "\200b";
+    }
+
+    &.zent-notify-success {
+      background: $notify-success;
+    }
+
+    &.zent-notify-error {
+      background: $notify-error;
+    }
   }
 }
 
@@ -69,11 +75,14 @@
 @keyframes notifyMoveOut {
   0% {
     opacity: 1;
+    max-height: 200px;
     transform: translateY(0%);
   }
 
   100% {
     opacity: 0;
+    max-height: 0;
+    padding: 0;
     transform: translateY(-100%);
   }
 }
